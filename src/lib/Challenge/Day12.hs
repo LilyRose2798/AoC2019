@@ -1,3 +1,4 @@
+{-# LANGUAGE OverloadedStrings #-}
 module Challenge.Day12 (day12a, day12b) where
 
 import Challenge.Day12.Solution
@@ -8,10 +9,10 @@ import Data.Either
 import Linear.V3
 
 coord :: Parser Int
-coord = letter *> char '=' *> signed decimal
+coord = letter *> "=" *> signed decimal
 
 v3Coord :: Parser (V3 Int)
-v3Coord = char '<' *> ((\(x:y:z:_) -> V3 x y z) <$> count 3 (coord <* option ' ' (char ',' <* space))) <* char '>'
+v3Coord = "<" *> ((\(x:y:z:_) -> V3 x y z) <$> count 3 (coord <* option "" ", ")) <* ">"
 
 v3List :: Parser [V3 Int]
 v3List = v3Coord `sepBy` endOfLine
