@@ -20,7 +20,7 @@ parseInput :: IO [V3 Int]
 parseInput = fromRight [] . parseOnly v3List <$> readFile "src/lib/Challenge/Day12/input.txt"
 
 day12a :: IO ()
-day12a = parseInput >>= (putStrLn . show . solveA)
+day12a = parseInput >>= putStrLn . show . solveA
 
 day12b :: IO ()
-day12b = parseInput >>= (putStrLn . show . solveB)
+day12b = parseInput >>= putStrLn . show . solveB

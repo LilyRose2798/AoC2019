@@ -7,7 +7,7 @@ parseInput :: IO [Int]
 parseInput = map read . splitOn "," <$> readFile "src/lib/Challenge/Day02/input.txt"
 
 day02a :: IO ()
-day02a = parseInput >>= (putStrLn . show . solveA)
+day02a = parseInput >>= putStrLn . show . solveA
 
 day02b :: IO ()
-day02b = parseInput >>= (putStrLn . show . solveB)
+day02b = parseInput >>= putStrLn . show . solveB
