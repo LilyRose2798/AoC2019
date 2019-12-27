@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 65e01380d83c705b83c30be5a8aaf6d63dddf44a6cde32771b6024f7fda40381
+-- hash: cf238a5cdce1d56289db6deebc5df63001739a40789d6917fc953e2e641f1eb2
 
 name:           aoc2019
 version:        0.1.0.0
@@ -52,6 +52,32 @@ library
       Challenge.Day11.Solution
       Challenge.Day12
       Challenge.Day12.Solution
+      Challenge.Day13
+      Challenge.Day13.Solution
+      Challenge.Day14
+      Challenge.Day14.Solution
+      Challenge.Day15
+      Challenge.Day15.Solution
+      Challenge.Day16
+      Challenge.Day16.Solution
+      Challenge.Day17
+      Challenge.Day17.Solution
+      Challenge.Day18
+      Challenge.Day18.Solution
+      Challenge.Day19
+      Challenge.Day19.Solution
+      Challenge.Day20
+      Challenge.Day20.Solution
+      Challenge.Day21
+      Challenge.Day21.Solution
+      Challenge.Day22
+      Challenge.Day22.Solution
+      Challenge.Day23
+      Challenge.Day23.Solution
+      Challenge.Day24
+      Challenge.Day24.Solution
+      Challenge.Day25
+      Challenge.Day25.Solution
       Utils
   other-modules:
       Paths_aoc2019
