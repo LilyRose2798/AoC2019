@@ -3,12 +3,11 @@ module Challenge.Day14.Solution
     , solveB
     , Chemical
     , Quantity
-    , ChemicalQuantity(..)
-    , Reaction(..)
+    , ChemicalQuantity
+    , Reaction
     ) where
 
 import qualified Data.Map as Map
-import Data.List (intercalate)
 import Control.Arrow
 
 type Chemical = String
@@ -16,9 +15,6 @@ type Quantity = Int
 type ChemicalQuantity = (Chemical, Quantity)
 type Reaction = ([ChemicalQuantity], ChemicalQuantity)
 type ProductMap = Map.Map Chemical (Quantity, [ChemicalQuantity])
-
--- instance Show ChemicalQuantity where show (c, q) = show q ++ " " ++ c
--- instance Show Reaction where show (r, p) = intercalate ", " (map show r) ++ " => " ++ show p
 
 roundUpDiv :: Integral a => a -> a -> a
 roundUpDiv x y = (x + y - 1) `div` y
@@ -31,13 +27,11 @@ reagents pm cq@(c, q) = case Map.lookup c pm of
 combineCQs :: [ChemicalQuantity] -> [ChemicalQuantity]
 combineCQs = Map.toList . Map.fromListWith (+)
 
--- chemicalNeeded pm cqs cq = -- is cq used to make anything in cqs
-
 allReagents :: ProductMap -> [ChemicalQuantity] -> [ChemicalQuantity]
 allReagents pm cqs = combineCQs $ concat $ map (reagents pm) cqs
 
--- solveA :: [Reaction] -> Int
-solveA xs = head $ drop 12 $ iterate (allReagents (Map.fromList $ map (\(r, (c, q)) -> (c, (q, r))) xs)) [("FUEL", 1)]
+solveA :: [Reaction] -> Int
+solveA xs = snd $ head $ head $ drop 12 $ iterate (allReagents (Map.fromList $ map (\(r, (c, q)) -> (c, (q, r))) xs)) [("FUEL", 1)]
 
 solveB :: [Reaction] -> Int
 solveB _ = 0

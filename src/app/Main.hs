@@ -9,8 +9,8 @@ main :: IO ()
 main = do
     args <- getArgs
     case args of
-        (command:args) -> 
-            case lookup command challengeMap of
+        (cmd:_) ->
+            case lookup cmd challengeMap of
                 (Just x) -> x
                 _ -> exitGracefully
         _ -> exitGracefully

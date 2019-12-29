@@ -1,12 +1,10 @@
-{-# LANGUAGE OverloadedStrings #-}
 module Challenge.Day14 (day14a, day14b) where
 
 import Challenge.Day14.Solution
-import Control.Applicative
 import Data.Attoparsec.Text
 import Prelude hiding (readFile)
 import Data.Text.IO (readFile)
-import Data.Either
+import Data.Either (fromRight)
 
 chemicalQuantity :: Parser (ChemicalQuantity)
 chemicalQuantity = flip (,) <$> decimal <* space <*> many1 letter

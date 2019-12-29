@@ -13,8 +13,7 @@ module Challenge.Day24.Solution
 import qualified Data.Set as Set
 import Linear.V2 (V2(..))
 import Linear.V3 (V3(..))
-import Data.Bool (bool)
-import Data.List (intercalate)
+-- import Data.Bool (bool)
 
 type Coord = Int
 type Point a = a Coord
@@ -43,12 +42,12 @@ biodiversityRating :: Grid2 -> Int
 biodiversityRating = sum . map (\(V2 x y) -> 2 ^ (y * 5 + x)) . Set.toList
 
 dropWhileUnique :: Ord a => [a] -> [a]
-dropWhileUnique xs = dropWhileUnique' xs Set.empty
+dropWhileUnique a = dropWhileUnique' a Set.empty
     where dropWhileUnique' (x:xs) s | Set.notMember x s = dropWhileUnique' xs (Set.insert x s)
           dropWhileUnique' xs _ = xs
 
-showGrid :: Grid2 -> String
-showGrid g = unlines $ map (\y -> map (\x -> bool '.' '#' (V2 x y `Set.member` g)) [0..4]) [0..4]
+-- showGrid :: Grid2 -> String
+-- showGrid g = unlines $ map (\y -> map (\x -> bool '.' '#' (V2 x y `Set.member` g)) [0..4]) [0..4]
 
 solveA :: Grid2 -> Int
 solveA = biodiversityRating . head . dropWhileUnique . iterate nextGen
@@ -84,9 +83,13 @@ neighboursGeneric f g h i j p@(V3 x y z) | f (V2 x y) = map (\a -> v2toV3 (h a) 
                                          | g (V2 x y) = [v2toV3 i (z - 1)]
                                          | otherwise = [p + v2toV3 j 0]
 
+leftNeighbours :: Point3 -> [Point3]
 leftNeighbours = neighboursGeneric (\(V2 x y) -> x == 3 && y == 2) (\(V2 x _) -> x == 0) (\y -> V2 4 y) (V2 1 2) (V2 (-1) 0)
+rightNeighbours :: Point3 -> [Point3]
 rightNeighbours = neighboursGeneric (\(V2 x y) -> x == 1 && y == 2) (\(V2 x _) -> x == 4) (\y -> V2 0 y) (V2 3 2) (V2 1 0)
+topNeighbours :: Point3 -> [Point3]
 topNeighbours = neighboursGeneric (\(V2 x y) -> x == 2 && y == 3) (\(V2 _ y) -> y == 0) (\x -> V2 x 4) (V2 2 1) (V2 0 (-1))
+bottomNeighbours :: Point3 -> [Point3]
 bottomNeighbours = neighboursGeneric (\(V2 x y) -> x == 2 && y == 1) (\(V2 _ y) -> y == 4) (\x -> V2 x 0) (V2 2 3) (V2 0 1)
 
 neighbours' :: Point3 -> Grid3
@@ -105,8 +108,8 @@ extendGrid' = Set.union <*> Set.unions . map neighbours' . Set.toList
 nextGen' :: Grid3 -> Grid3
 nextGen' = Set.filter <$> staysAlive' <*> extendGrid'
 
-showGrid' :: Grid3 -> String
-showGrid' g = unlines $ map unlines $ map (\z -> map (\y -> map (\x -> bool (bool '.' '#' (V3 x y z `Set.member` g)) '?' (x == 2 && y == 2)) [0..4]) [0..4]) [-5..5]
+-- showGrid' :: Grid3 -> String
+-- showGrid' g = unlines $ map unlines $ map (\z -> map (\y -> map (\x -> bool (bool '.' '#' (V3 x y z `Set.member` g)) '?' (x == 2 && y == 2)) [0..4]) [0..4]) [-5..5]
 
 solveB :: Grid3 -> Int
 solveB = length . head . drop 200 . iterate nextGen'

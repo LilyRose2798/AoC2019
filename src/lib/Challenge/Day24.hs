@@ -1,7 +1,6 @@
 module Challenge.Day24 (day24a, day24b) where
 
 import Challenge.Day24.Solution
-import Data.List.Split (splitOn)
 import qualified Data.Set as Set
 import Linear.V2 (V2(..))
 import Linear.V3 (V3(..))

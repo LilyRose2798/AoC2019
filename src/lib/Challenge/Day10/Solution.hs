@@ -9,7 +9,7 @@ simplify (V2 x y) = do
     let g = gcd x y
     case g of
         0 -> V2 0 0
-        otherwise -> V2 (x `div` g) (y `div` g)
+        _ -> V2 (x `div` g) (y `div` g)
 
 visible :: [V2 Int] -> V2 Int -> [V2 Int]
 visible xs x = nub $ map (simplify . subtract x) $ delete x xs
