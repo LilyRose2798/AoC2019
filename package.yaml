@@ -29,6 +29,53 @@ dependencies:
 - text
 - attoparsec
 
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wpartial-fields
+- -Wredundant-constraints
+- -XAutoDeriveTypeable
+- -XBangPatterns
+- -XBinaryLiterals
+- -XConstraintKinds
+- -XDataKinds
+- -XDefaultSignatures
+- -XDeriveDataTypeable
+- -XDeriveFoldable
+- -XDeriveFunctor
+- -XDeriveGeneric
+- -XDeriveTraversable
+- -XDoAndIfThenElse
+- -XEmptyDataDecls
+- -XExistentialQuantification
+- -XFlexibleContexts
+- -XFlexibleInstances
+- -XFunctionalDependencies
+- -XGADTs
+- -XGeneralizedNewtypeDeriving
+- -XInstanceSigs
+- -XKindSignatures
+- -XLambdaCase
+- -XMonadFailDesugaring
+- -XMultiParamTypeClasses
+- -XMultiWayIf
+- -XNamedFieldPuns
+- -XOverloadedStrings
+- -XPartialTypeSignatures
+- -XPatternGuards
+- -XPolyKinds
+- -XRankNTypes
+- -XRecordWildCards
+- -XScopedTypeVariables
+- -XStandaloneDeriving
+- -XTupleSections
+- -XTypeFamilies
+- -XTypeSynonymInstances
+- -XViewPatterns
+
 library:
   source-dirs: src/lib
 
