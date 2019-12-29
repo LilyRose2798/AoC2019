@@ -6,7 +6,7 @@ import qualified Data.Set as Set
 import Linear.V2 (V2(..))
 import Linear.V3 (V3(..))
 
-parseInput :: (Num m, Enum m, Num n, Enum n, Ord a) => (m -> n -> a) -> IO (Set.Set a)
+parseInput :: Ord (Point a) => (Coord -> Coord -> Point a) -> IO (Grid a)
 parseInput f = Set.fromList . concatMap (uncurry (map . flip f)) . zip [0..] . map (map fst . filter ((== '#') . snd) . zip [0..]) . lines <$> readFile "src/lib/Challenge/Day24/input.txt"
 
 parseInputA :: IO Grid2
